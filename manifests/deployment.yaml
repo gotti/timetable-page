@@ -19,7 +19,7 @@ spec:
           imagePullPolicy: Always
           volumeMounts:
           - name: timetable-data
-            mountPath: "/usr/share/nginx/html"
+            mountPath: "/usr/share/nginx/html/secrets"
             readOnly: true
           ports:
             - containerPort: 80
