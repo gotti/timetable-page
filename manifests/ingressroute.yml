@@ -1,0 +1,12 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: timetable
+  namespace: trpfrog-timetable
+spec:
+  routes:
+    - match: Host(`timetable.rax.rip`)
+      kind: Rule
+      services:
+        - name: timetable
+          port: 80

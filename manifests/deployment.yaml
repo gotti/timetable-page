@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: timetable
+  namespace: trpfrog-timetable
+spec:
+  selector:
+    matchLabels:
+      app: trpfrog-timetable
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: trpfrog-timetable
+    spec:
+      containers:
+        - name: timetable
+          image: ghcr.io/gotti/timetable:latest
+          imagePullPolicy: Always
+          volumeMounts:
+          - name: timetable-data
+            mountPath: "/usr/share/nginx/html/timetable.js"
+            readOnly: true
+          ports:
+            - containerPort: 80
+      volumes:
+      - name: timetable-data
+        secret:
+          secretName: timetable-data
